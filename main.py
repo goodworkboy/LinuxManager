@@ -8,6 +8,7 @@ import xlrd
 from ImportStudents import importStudentsUI
 import global_variable as gl
 from PublishQuestion import publishQuestionsUI
+from heart_check import heart_check_ui
 
 
 def choose_action():
@@ -17,7 +18,7 @@ def choose_action():
     elif choose == "2":
         publishQuestionsUI()
     elif choose == "3":
-        print("4、监测学生在线情况")
+        heart_check_ui()
     elif choose == "0":
         return True
     else:

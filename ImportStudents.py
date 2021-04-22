@@ -1,4 +1,7 @@
+import time
+
 import xlrd
+import xlwt
 import os
 import global_variable as gl
 
@@ -17,6 +20,7 @@ def action(path):
         studentNums = [str(int(studentNum1[i])) for i in range(0, len(studentNum1))]
         gl.set_value("studentNums",studentNums)
         create_users(studentNums)
+        backup()
     except FileNotFoundError:
         print("文件打开失败!")
         isContinue = input("是否继续(y/n)?")
@@ -43,3 +47,11 @@ def importStudentsUI():
     choose = input("是否导入学生名单并创建实验用户(y/n)?")
     if choose == "y":
         action(path)
+
+def backup():
+    student_nums = gl.get_value(gl.gl_student_nums_key)
+    fp = open(gl.system_data_file, "w", encoding="utf-8")
+    for student_num in student_nums:
+        fp.write(student_num)
+        fp.write("\n")
+    fp.close()
