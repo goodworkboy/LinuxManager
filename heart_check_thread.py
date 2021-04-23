@@ -41,7 +41,6 @@ if __name__ == '__main__':
     while True:
         os.system("clear")
         print("学生在线情况")
-
         online_student = do_once_check()
         match_and_print(online_student)
         time.sleep(2)

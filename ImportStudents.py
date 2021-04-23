@@ -5,6 +5,7 @@ import xlwt
 import os
 import global_variable as gl
 
+student_username_prefix = "jlurj"
 
 def action(path):
     try:
@@ -28,22 +29,23 @@ def action(path):
             importStudentsUI()
     except ValueError:
         print("没有找到学生学号这一列")
-    else:
-        print(studentNums)
 
 
 def create_users(studentNums):
     passwd = "123456"
     for studentNum in studentNums:
-        os.system("useradd jlurj%s -p%s" % (studentNum, passwd))
-        path = "/home/jlurj" + studentNum + "/experiences"
-        os.system("mkdir -p %s" % (path))
-        print("jlurj%s create successful" % (studentNum))
+        temp = os.system("useradd jlurj%s -p%s" % (studentNum, passwd))
+        if temp==0:
+            path = "/home/jlurj" + studentNum + "/experiences"
+            os.popen("mkdir -p %s" % (path))
+            print("学号%s的实验帐户创建成功，帐户名为jlurj%s" % (studentNum,studentNum))
+        else:
+            print("帐户创建失败，该学生%s帐户以存在"%(studentNum))
 
 
 def importStudentsUI():
-    # path = input("please input the location of students l book:")
-    path = "/home/liugx/test.xlsx"
+    path = input("请输入学生名单的路径:")
+    #path = "/home/liugx/test.xlsx"
     choose = input("是否导入学生名单并创建实验用户(y/n)?")
     if choose == "y":
         action(path)
