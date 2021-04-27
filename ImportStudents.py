@@ -32,13 +32,15 @@ def action(path):
 
 
 def create_users(studentNums):
-    passwd = "123456"
+    passwd = "12345678"
     for studentNum in studentNums:
-        temp = os.system("useradd jlurj%s -p%s" % (studentNum, passwd))
+        temp = os.system("useradd jlurj%s" % (studentNum))
         if temp==0:
             path = "/home/jlurj" + studentNum + "/experiences"
+            student_account = student_username_prefix+studentNum
+            os.popen("echo %s | passwd --stdin %s" %(passwd,student_account))
             os.popen("mkdir -p %s" % (path))
-            print("学号%s的实验帐户创建成功，帐户名为jlurj%s" % (studentNum,studentNum))
+            print("学号%s的实验帐户创建成功，帐户名为jlurj%s" % (studentNum, studentNum))
         else:
             print("帐户创建失败，该学生%s帐户以存在"%(studentNum))
 

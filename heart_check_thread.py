@@ -2,18 +2,20 @@ import sys
 import threading
 import os
 import global_variable as gl
+import ImportStudents as import_students
 import time
 
-prefix = "liugx"
-
 def do_once_check():
-    fp = os.popen("w -shf")
-    input_stream = fp.read()
-    strs = input_stream.split(" ")
+    fp = os.popen("who")
+    strs = []
+    for line in fp.readlines():
+        for temp in line.split(" "):
+            if temp != " ":
+                strs.append(temp)
     online_student =[]
     for temp in strs:
-        if temp.startswith(prefix):
-            online_student.append(temp[5:len(temp)])
+        if temp.startswith(import_students.student_username_prefix):
+            online_student.append(temp[len(import_students.student_username_prefix):len(temp)])
     return online_student
 
 def is_online(temp):
@@ -26,10 +28,10 @@ def is_online(temp):
 def match_and_print(online_student):
     student_nums = gl.get_value(gl.gl_student_nums_key)
     time_local = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print("学生在线情况")
     print("学号    状态    时间")
     for student_num in student_nums:
         temp = is_online(student_num in online_student)
-
         temp = student_num+"    "+temp+"    "+time_local
         print("%s" % (temp))
 
@@ -40,7 +42,6 @@ if __name__ == '__main__':
         exit()
     while True:
         os.system("clear")
-        print("学生在线情况")
         online_student = do_once_check()
         match_and_print(online_student)
         time.sleep(2)

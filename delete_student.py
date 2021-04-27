@@ -6,7 +6,7 @@ def remove_one_student(student_num):
     command = "userdel -r jlurj"+student_num
     temp = os.system(command)
     if temp==0:
-        print("已移除学生的帐户"%(student_num))
+        print("已移除学生%s的帐户"%(student_num))
     else:
         print("帐户删除失败！")
 
