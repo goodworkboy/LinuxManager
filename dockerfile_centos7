@@ -1,0 +1,32 @@
+FROM centos:7
+
+MAINTAINER liugx<2423136704@qq.com>
+
+
+
+
+
+RUN set -eux\
+    \
+    && yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make libffi-devel -y \
+    && yum makecache \
+    && yum -y install wget \
+    && wget https://www.python.org/ftp/python/3.8.9/Python-3.8.9.tgz \
+    && tar -zxvf Python-3.8.9.tgz \
+    && cd Python-3.8.9 \
+    && ./configure --prefix=/usr/local/python3 \
+    && make && make install \
+    && ln -s /usr/local/python3/bin/python3 /usr/bin/python3 \
+    && ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3 \
+    && pip3 install xlrd==1.2.0\
+    && mkdir -p $HOME/linux_manage/bin \
+    && mkdir $HOME/linux_manage/experiences \
+    && yum -y install gnome-terminal
+
+EXPOSE 8888
+
+ENV PYTHON_HOME /usr/local/python3
+ENV PATH $PATH;$PYTHON_HOME/bin
+ENV MYPATH /root/linux_manage
+WORKDIR $MYPATH
+CMD /bin/bash

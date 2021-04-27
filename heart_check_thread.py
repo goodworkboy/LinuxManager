@@ -2,7 +2,7 @@ import sys
 import threading
 import os
 import global_variable as gl
-import ImportStudents as import_students
+import import_students as import_students
 import time
 
 def do_once_check():

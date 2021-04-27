@@ -1,7 +1,6 @@
 import time
 
 import xlrd
-import xlwt
 import os
 import global_variable as gl
 

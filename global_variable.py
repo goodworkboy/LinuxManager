@@ -19,7 +19,6 @@ def _init():#初始化
         print("系统文件打开失败!")
     except ValueError:
         print("没有找到学生学号这一列")
-    finally:
         fp.close()
 
 def set_value(key , value):

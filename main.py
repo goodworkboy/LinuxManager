@@ -1,13 +1,15 @@
+# -*- coding: utf-8 -*-
 # This is a sample Python script.
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
+
 import xlrd
 
-from ImportStudents import importStudentsUI
+from import_students import importStudentsUI
 import global_variable as gl
-from PublishQuestion import publishQuestionsUI
+from publish_question import publishQuestionsUI
 from heart_check import heart_check_ui
 
 
