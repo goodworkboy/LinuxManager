@@ -5,6 +5,7 @@ import os
 import global_variable as gl
 
 student_username_prefix = "jlurj"
+student_usergroup="students"
 
 def action(path):
     try:
@@ -31,14 +32,14 @@ def action(path):
 
 
 def create_users(studentNums):
-    passwd = "12345678"
+    passwd = "IZqjXY5YZu.9I"
     for studentNum in studentNums:
-        temp = os.system("useradd jlurj%s" % (studentNum))
+        temp = os.system(gl.docker_command_pre+"useradd jlurj%s -p %s -g %s" % (studentNum , passwd,student_usergroup))
         if temp==0:
-            path = "/home/jlurj" + studentNum + "/experiences"
-            student_account = student_username_prefix+studentNum
-            os.popen("echo %s | passwd --stdin %s" %(passwd,student_account))
-            os.popen("mkdir -p %s" % (path))
+            #path = "/home/jlurj" + studentNum + "/experiences"
+            #student_account = student_username_prefix+studentNum
+            #os.popen("mkdir -p %s" % (path))
+            command = gl.docker_command_pre+"ln -s /src/experiences /home/"+student_username_prefix+studentNum+"/experiences"
             print("学号%s的实验帐户创建成功，帐户名为jlurj%s" % (studentNum, studentNum))
         else:
             print("帐户创建失败，该学生%s帐户以存在"%(studentNum))

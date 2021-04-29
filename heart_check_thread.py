@@ -6,14 +6,15 @@ import import_students as import_students
 import time
 
 def do_once_check():
-    fp = os.popen("who")
+    command = gl.docker_command_pre+"who | cut -d' ' -f1|uniq|sort"
+    fp = os.popen(command)
     strs = []
-    for line in fp.readlines():
-        for temp in line.split(" "):
-            if temp != " ":
-                strs.append(temp)
+    for temp in fp.read().split("\n"):
+        if temp != " ":
+            strs.append(temp)
     online_student =[]
     for temp in strs:
+        print(temp.strip().startswith("jlurj"))
         if temp.startswith(import_students.student_username_prefix):
             online_student.append(temp[len(import_students.student_username_prefix):len(temp)])
     return online_student

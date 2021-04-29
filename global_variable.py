@@ -3,6 +3,7 @@ import xlrd
 
 system_data_file = "students.txt"
 gl_student_nums_key="studentNums"
+docker_command_pre = "docker exec -it centos7 "
 
 def _init():#初始化
     global _global_dict
