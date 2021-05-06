@@ -14,7 +14,7 @@ docker build -f /home/liugx/graduation/project/dockerfile_centos7 -t mycentos7 .
 
 
 #docker run
-docker run -it -p 8888:8888 -v /home/liugx/graduation/test/bin:/root/linux_manage/bin -v /home/liugx/graduation/test/experiences:/root/linux_manage/experiences mycentos7
+docker run -it -p 8888:8888 -v /home/liugx/graduation/experiences:/src/experiences mycentos7
 
 #docker remove image
 docker rmi -f mycentos7
