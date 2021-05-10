@@ -14,7 +14,11 @@ docker build -f /home/liugx/graduation/project/dockerfile_centos7 -t mycentos7 .
 
 
 #docker run
+<<<<<<< HEAD
 docker run -it --name=centos7  -p 8888:8888 -p 8889:22 -v /home/liugx/graduation/test/experiences:/src/experiences mycentos7
+=======
+docker run -it -p 8888:8888 -v /home/liugx/graduation/experiences:/src/experiences mycentos7
+>>>>>>> temp
 
 #docker remove image
 docker rmi -f mycentos7
