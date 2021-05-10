@@ -14,7 +14,6 @@ def do_once_check():
             strs.append(temp)
     online_student =[]
     for temp in strs:
-        print(temp.strip().startswith("jlurj"))
         if temp.startswith(import_students.student_username_prefix):
             online_student.append(temp[len(import_students.student_username_prefix):len(temp)])
     return online_student
@@ -35,6 +34,9 @@ def match_and_print(online_student):
         temp = is_online(student_num in online_student)
         temp = student_num+"    "+temp+"    "+time_local
         print("%s" % (temp))
+
+    totalstring="在线人数： "+str(len(online_student))+"   "+"   离线人数： "+str(len(student_nums)-len(online_student))+"  总人数: "+str(len(student_nums))
+    print( totalstring)
 
 if __name__ == '__main__':
     gl._init()

@@ -40,7 +40,9 @@ def create_users(studentNums):
             #student_account = student_username_prefix+studentNum
             #os.popen("mkdir -p %s" % (path))
             command = gl.docker_command_pre+"ln -s /src/experiences /home/"+student_username_prefix+studentNum+"/experiences"
-            print("学号%s的实验帐户创建成功，帐户名为jlurj%s" % (studentNum, studentNum))
+            p = os.popen(command)
+            print()
+            print("学号%s的实验帐户创建成功，帐户名为jlurj%s " % (studentNum, studentNum))
         else:
             print("帐户创建失败，该学生%s帐户以存在"%(studentNum))
 
